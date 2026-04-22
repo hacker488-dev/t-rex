@@ -1,0 +1,66 @@
+.app-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.canvas-container {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.info-panel {
+  position: absolute;
+  top: 20px;
+  right: 20px; /* Changed from left to right */
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  max-height: 90vh;
+  overflow-y: auto;
+  font-family: sans-serif;
+  z-index: 1000;
+}
+
+.info-panel h2 {
+  margin-top: 0;
+  color: #ffcc00;
+}
+
+.info-panel h3 {
+  color: #ffcc00;
+}
+
+.info-panel ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.info-panel li {
+  margin-bottom: 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.object-selection-panel {
+  width: 200px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
