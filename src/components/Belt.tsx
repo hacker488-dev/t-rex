@@ -1,7 +1,7 @@
 import { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { InstancedMesh, Object3D, Color } from 'three';
-import { AsteroidBeltData, KuiperBeltData } from '../types';
+import type { AsteroidBeltData, KuiperBeltData } from '../types';
 
 interface BeltProps {
   beltData: AsteroidBeltData | KuiperBeltData;
