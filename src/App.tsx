@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { Canvas, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls as DreiOrbitControlsComponent, Stars } from '@react-three/drei';
 import CelestialBody from './components/CelestialBody';
@@ -7,14 +7,43 @@ import InfoPanel from './components/InfoPanel';
 import ObjectCard from './components/ObjectCard';
 import { Colonist } from './components/Colonist';
 import { Rocket } from './components/Rocket';
-import Belt from './components/Belt'; // Import Belt component
-import { solarSystemData, spacecraftData, asteroidBeltData, kuiperBeltData } from './data'; // Import belt data
+import Belt from './components/Belt';
+import { solarSystemData, spacecraftData, asteroidBeltData, kuiperBeltData } from './data';
 import './App.css';
 import { Group, Mesh, Vector3 } from 'three';
 import type { SelectedObject } from './types';
 import { OrbitControls } from 'three-stdlib';
 
 const mars = solarSystemData.find(planet => planet.name === 'Mars');
+
+interface NukeProps {
+  targetPosition: Vector3;
+  onImpact: () => void;
+}
+
+const Nuke: React.FC<NukeProps> = ({ targetPosition, onImpact }) => {
+  const meshRef = useRef<Mesh>(null!);
+  const startPosition = useMemo(() => new Vector3(0, 0, 0), []); // Launch from Sun
+  const [progress, setProgress] = useState(0);
+
+  useFrame((state, delta) => {
+    if (progress < 1) {
+      const newProgress = Math.min(progress + delta * 0.5, 1);
+      setProgress(newProgress);
+      meshRef.current.position.lerpVectors(startPosition, targetPosition, newProgress);
+      meshRef.current.lookAt(targetPosition);
+    } else {
+      onImpact();
+    }
+  });
+
+  return (
+    <mesh ref={meshRef}>
+      <cylinderGeometry args={[0.05, 0.05, 0.5, 8]} />
+      <meshStandardMaterial color="red" emissive="red" emissiveIntensity={2} />
+    </mesh>
+  );
+};
 
 interface CameraControllerProps {
   focusedObject: SelectedObject;
@@ -66,6 +95,9 @@ const CameraController: React.FC<CameraControllerProps> = ({ focusedObject, defa
 function App() {
   const [selectedObject, setSelectedObject] = useState<SelectedObject>(null);
   const [focusedObject, setFocusedObject] = useState<SelectedObject>(null);
+  const [language, setLanguage] = useState<'en' | 'ur'>('en');
+  const [nukes, setNukes] = useState<{ id: number; targetName: string }[]>([]);
+  const [isShaking, setIsShaking] = useState(false);
   const objectRefs = useRef<{ [key: string]: Group | Mesh | null }>({});
 
   const defaultCameraPosition = new Vector3(0, 50, 100);
@@ -85,26 +117,45 @@ function App() {
     setSelectedObject(null);
   };
 
+  const handleLaunchNuke = (targetName: string) => {
+    setNukes(prev => [...prev, { id: Date.now(), targetName }]);
+  };
+
+  const handleNukeImpact = (id: number) => {
+    setNukes(prev => prev.filter(n => n.id !== id));
+    setIsShaking(true);
+    setTimeout(() => setIsShaking(false), 500); // Shakes for 0.5 seconds
+  };
+
   const setRef = useCallback((name: string, node: Group | Mesh | null) => {
     if (node) {
       objectRefs.current[name] = node;
     }
   }, []);
 
+  const t = (en: string, ur: string) => (language === 'ur' ? ur : en);
+
   return (
-    <div className="app-container">
+    <div className={`app-container ${language === 'ur' ? 'rtl' : ''} ${isShaking ? 'shake' : ''}`}>
       <div className="canvas-container">
-        <div style={{ position: 'absolute', top: 20, left: '50%', transform: 'translateX(-50%)', zIndex: 1, color: 'white', textAlign: 'center' }}>
-          <h1 style={{ margin: 0 }}>The Solar System</h1>
-          <p style={{ margin: 0 }}>Click on an object card to learn more</p>
+        <div style={{ position: 'absolute', top: 20, left: '50%', transform: 'translateX(-50%)', zIndex: 1, color: 'white', textAlign: 'center', pointerEvents: 'none' }}>
+          <h1 style={{ margin: 0 }}>{t('The Solar System', 'نظام شمسی')}</h1>
+          <p style={{ margin: 0 }}>{t('Click on an object card to learn more', 'مزید جاننے کے لیے کسی چیز پر کلک کریں')}</p>
         </div>
+
+        <button
+          onClick={() => setLanguage(l => l === 'en' ? 'ur' : 'en')}
+          style={{ position: 'absolute', top: 20, right: 20, zIndex: 1000, padding: '10px', backgroundColor: '#444', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
+        >
+          {language === 'en' ? 'اردو' : 'English'}
+        </button>
 
         {focusedObject && (
           <button
             onClick={handleBackToSolarSystem}
             style={{ position: 'absolute', bottom: 20, left: 20, zIndex: 1000, padding: '10px 20px', backgroundColor: '#333', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
           >
-            Back to Solar System
+            {t('Back to Solar System', 'نظام شمسی پر واپس جائیں')}
           </button>
         )}
 
@@ -127,29 +178,46 @@ function App() {
               <Spacecraft ref={node => setRef(craft.name, node)} craft={craft} />
             </React.Fragment>
           ))}
-          {/* Add Asteroid Belt */}
+          
+          {nukes.map(nuke => {
+            const target = objectRefs.current[nuke.targetName];
+            if (!target) return null;
+            return (
+              <Nuke 
+                key={nuke.id} 
+                targetPosition={target.position} 
+                onImpact={() => handleNukeImpact(nuke.id)} 
+              />
+            );
+          })}
+
           <Belt beltData={asteroidBeltData} />
-          {/* Add Kuiper Belt */}
           <Belt beltData={kuiperBeltData} />
-          <Colonist position={[mars.orbitalRadius + mars.size + 0.1, 0, 0]} scale={0.1} />
-          <Colonist position={[mars.orbitalRadius - mars.size - 0.1, 0, 0]} scale={0.1} />
-          <Colonist position={[mars.orbitalRadius, mars.size + 0.1, 0]} scale={0.1} />
-          <Colonist position={[mars.orbitalRadius, -mars.size - 0.1, 0]} scale={0.1} />
-          <Colonist position={[mars.orbitalRadius, 0, mars.size + 0.1]} scale={0.1} />
+          {mars && (
+            <>
+              <Colonist position={[mars.orbitalRadius + mars.size + 0.1, 0, 0]} scale={0.1} />
+              <Colonist position={[mars.orbitalRadius - mars.size - 0.1, 0, 0]} scale={0.1} />
+            </>
+          )}
         </Canvas>
       </div>
 
       <div className="object-selection-panel">
-        <h2>Objects</h2>
+        <h2>{t('Objects', 'اشیاء')}</h2>
         {solarSystemData.map((body) => (
-          <ObjectCard key={body.name} object={body} onSelect={handleSelectObject} />
+          <ObjectCard key={body.name} object={body} language={language} onSelect={handleSelectObject} />
         ))}
         {spacecraftData.map((craft) => (
-          <ObjectCard key={craft.name} object={craft} onSelect={handleSelectObject} />
+          <ObjectCard key={craft.name} object={craft} language={language} onSelect={handleSelectObject} />
         ))}
       </div>
 
-      <InfoPanel selectedObject={selectedObject} onClose={handleClosePanel} />
+      <InfoPanel 
+        selectedObject={selectedObject} 
+        language={language} 
+        onClose={handleClosePanel} 
+        onLaunchNuke={handleLaunchNuke}
+      />
     </div>
   );
 }

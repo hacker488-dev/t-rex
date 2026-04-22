@@ -1,7 +1,10 @@
 export interface CelestialBodyData {
   name: string;
+  nameUrdu: string;
   description: string;
+  descriptionUrdu: string;
   funFacts: string[];
+  funFactsUrdu: string[];
   size: number; // A relative size for rendering
   diameterKm: number;
   color: string;
@@ -12,8 +15,11 @@ export interface CelestialBodyData {
 
 export interface SpacecraftData {
   name: string;
+  nameUrdu: string;
   description: string;
+  descriptionUrdu: string;
   funFacts: string[];
+  funFactsUrdu: string[];
   size: number;
   diameterKm: number;
   color: string;
@@ -22,6 +28,7 @@ export interface SpacecraftData {
 
 export interface AsteroidBeltData {
   name: string;
+  nameUrdu: string;
   innerRadius: number;
   outerRadius: number;
   height: number;
@@ -33,6 +40,7 @@ export interface AsteroidBeltData {
 
 export interface KuiperBeltData {
   name: string;
+  nameUrdu: string;
   innerRadius: number;
   outerRadius: number;
   height: number;

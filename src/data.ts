@@ -3,13 +3,20 @@ import type { CelestialBodyData, SpacecraftData } from './types';
 export const solarSystemData: CelestialBodyData[] = [
   {
     name: 'Sun',
+    nameUrdu: 'سورج',
     description: 'The Sun is the star at the center of the Solar System. It is a nearly perfect sphere of hot plasma, heated to incandescence by nuclear fusion reactions in its core.',
+    descriptionUrdu: 'سورج نظام شمسی کے مرکز میں واقع ستارہ ہے۔ یہ گرم پلازما کا ایک تقریباً مکمل کرہ ہے جو اپنے مرکز میں نیوکلیائی فیوژن کے ذریعے چمکتا ہے۔',
     funFacts: [
       'The Sun accounts for 99.86% of the mass in the Solar System.',
       'The temperature inside the Sun can reach 15 million degrees Celsius.',
       'It takes about 8 minutes and 20 seconds for light from the Sun to reach Earth.',
     ],
-    size: 5, // A relative size for rendering
+    funFactsUrdu: [
+        'سورج نظام شمسی کے کل وزن کا 99.86 فیصد ہے۔',
+        'سورج کے اندر کا درجہ حرارت 1.5 کروڑ ڈگری سیلسیس تک پہنچ سکتا ہے۔',
+        'سورج کی روشنی کو زمین تک پہنچنے میں تقریباً 8 منٹ 20 سیکنڈ لگتے ہیں۔',
+    ],
+    size: 5,
     diameterKm: 1391000,
     color: '#ffcc00',
     orbitalRadius: 0,
@@ -17,11 +24,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
   {
     name: 'Mercury',
+    nameUrdu: 'عطارد',
     description: 'Mercury is the smallest planet in the Solar System and nearest to the Sun. Its orbit takes 87.97 Earth days, the shortest of all the Sun\'s planets.',
+    descriptionUrdu: 'عطارد نظام شمسی کا سب سے چھوٹا اور سورج کے قریب ترین سیارہ ہے۔ اس کا مدار صرف 88 زمینی دنوں کا ہے، جو سب سے کم ہے۔',
     funFacts: [
         'A year on Mercury is just 88 days long.',
         'Mercury is the second densest planet.',
         'Mercury has a molten core.',
+    ],
+    funFactsUrdu: [
+        'عطارد پر ایک سال صرف 88 دن کا ہوتا ہے۔',
+        'عطارد دوسرا سب سے ٹھوس سیارہ ہے۔',
+        'عطارد کا مرکز پگھلا ہوا ہے۔',
     ],
     size: 0.5,
     diameterKm: 4879,
@@ -31,11 +45,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
   {
     name: 'Venus',
-    description: 'Venus is the second planet from the Sun. It is named after the Roman goddess of love and beauty. As the brightest planet in Earth\'s night sky and the second brightest natural object after the Moon, Venus can cast shadows and can be, on rare occasion, visible to the naked eye in broad daylight.',
+    nameUrdu: 'زہرہ',
+    description: 'Venus is the second planet from the Sun. It is named after the Roman goddess of love and beauty.',
+    descriptionUrdu: 'زہرہ سورج سے دوسرا سیارہ ہے۔ اسے رومی محبت کی دیوی کے نام پر رکھا گیا ہے۔ یہ زمین کے آسمان میں چاند کے بعد سب سے زیادہ چمکنے والی چیز ہے۔',
     funFacts: [
         'Venus is the hottest planet in the solar system.',
         'A day on Venus is longer than a year.',
         'Venus is the second brightest object in the night sky.',
+    ],
+    funFactsUrdu: [
+        'زہرہ نظام شمسی کا گرم ترین سیارہ ہے۔',
+        'زہرہ کا ایک دن اس کے ایک سال سے لمبا ہوتا ہے۔',
+        'زہرہ رات کے آسمان میں دوسری سب سے چمکدار چیز ہے۔',
     ],
     size: 0.9,
     diameterKm: 12104,
@@ -45,11 +66,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
   {
     name: 'Earth',
-    description: 'Earth is the third planet from the Sun and the only astronomical object known to harbor life. About 29.2% of Earth\'s surface is land consisting of continents and islands.',
+    nameUrdu: 'زمین',
+    description: 'Earth is the third planet from the Sun and the only astronomical object known to harbor life.',
+    descriptionUrdu: 'زمین سورج سے تیسرا سیارہ ہے اور واحد معلوم فلکیاتی جسم ہے جہاں زندگی موجود ہے۔',
     funFacts: [
       'Earth\'s rotation is gradually slowing.',
       'A year on Earth isn\'t 365 days, it\'s 365.2564 days.',
       'Earth has a powerful magnetic field.',
+    ],
+    funFactsUrdu: [
+        'زمین کی گردش آہستہ آہستہ کم ہو رہی ہے۔',
+        'زمین کا ایک سال 365 نہیں بلکہ 365.2564 دن کا ہوتا ہے۔',
+        'زمین کا ایک طاقتور مقناطیسی میدان ہے۔',
     ],
     size: 1,
     diameterKm: 12742,
@@ -59,11 +87,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
   {
     name: 'Mars',
-    description: 'Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being only larger than Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the "Red Planet".',
+    nameUrdu: 'مریخ',
+    description: 'Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System.',
+    descriptionUrdu: 'مریخ سورج سے چوتھا سیارہ ہے اور نظام شمسی کا دوسرا سب سے چھوٹا سیارہ ہے۔ اسے سرخ سیارہ بھی کہا جاتا ہے۔',
     funFacts: [
         'Mars has the tallest volcano in the solar system.',
         'Mars has two moons, Phobos and Deimos.',
         'A year on Mars is 687 Earth days.',
+    ],
+    funFactsUrdu: [
+        'مریخ پر نظام شمسی کا سب سے اونچا آتش فشاں موجود ہے۔',
+        'مریخ کے دو چاند ہیں، فوبوس اور ڈیموس۔',
+        'مریخ کا ایک سال 687 زمینی دنوں کا ہوتا ہے۔',
     ],
     size: 0.7,
     diameterKm: 6779,
@@ -73,11 +108,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
   {
     name: 'Jupiter',
-    description: 'Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass more than two and a half times that of all the other planets in the Solar System combined, but slightly less than one-thousandth the mass of the Sun.',
+    nameUrdu: 'مشتری',
+    description: 'Jupiter is the fifth planet from the Sun and the largest in the Solar System.',
+    descriptionUrdu: 'مشتری سورج سے پانچواں اور نظام شمسی کا سب سے بڑا سیارہ ہے۔ یہ ایک گیس کا دیو ہے۔',
     funFacts: [
         'Jupiter has the shortest day of all the planets.',
-        'The Great Red Spot is a huge storm on Jupiter that has been raging for centuries.',
+        'The Great Red Spot is a huge storm on Jupiter.',
         'Jupiter has a faint ring system.',
+    ],
+    funFactsUrdu: [
+        'مشتری کا دن تمام سیاروں میں سب سے چھوٹا ہوتا ہے۔',
+        'مشتری پر ایک بڑا طوفان ہے جسے گریٹ ریڈ اسپاٹ کہا جاتا ہے۔',
+        'مشتری کا ایک ہلکا سا حلقوں کا نظام بھی ہے۔',
     ],
     size: 3.5,
     diameterKm: 139820,
@@ -87,11 +129,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
     {
     name: 'Saturn',
-    description: 'Saturn is the sixth planet from the Sun and the second-largest in the Solar System, after Jupiter. It is a gas giant with an average radius of about nine times that of Earth.',
+    nameUrdu: 'زحل',
+    description: 'Saturn is the sixth planet from the Sun and the second-largest in the Solar System.',
+    descriptionUrdu: 'زحل سورج سے چھٹا اور نظام شمسی کا دوسرا بڑا سیارہ ہے۔ یہ اپنے خوبصورت حلقوں کے لیے مشہور ہے۔',
     funFacts: [
         'Saturn has the most extensive rings in the solar system.',
         'A day on Saturn is only 10.7 hours.',
         'Saturn is the least dense planet in the solar system.',
+    ],
+    funFactsUrdu: [
+        'زحل کے پاس نظام شمسی کے سب سے بڑے حلقے ہیں۔',
+        'زحل کا دن صرف 10.7 گھنٹے کا ہوتا ہے۔',
+        'زحل نظام شمسی کا سب سے کم ٹھوس سیارہ ہے۔',
     ],
     size: 3,
     diameterKm: 116460,
@@ -101,11 +150,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
   {
     name: 'Uranus',
-    description: 'Uranus is the seventh planet from the Sun. Its name is a reference to the Greek god of the sky, Uranus, who, according to Greek mythology, was the grandfather of Zeus (Jupiter) and father of Cronus (Saturn). It has the third-largest planetary radius and fourth-largest planetary mass in the Solar System.',
+    nameUrdu: 'یورینس',
+    description: 'Uranus is the seventh planet from the Sun.',
+    descriptionUrdu: 'یورینس سورج سے ساتواں سیارہ ہے۔ یہ اپنی طرف جھکا ہوا گردش کرتا ہے۔',
     funFacts: [
         'Uranus is the coldest planet in the solar system.',
         'Uranus rotates on its side.',
         'A season on Uranus lasts for 21 Earth years.',
+    ],
+    funFactsUrdu: [
+        'یورینس نظام شمسی کا سب سے ٹھنڈا سیارہ ہے۔',
+        'یورینس اپنے پہلو پر گھومتا ہے۔',
+        'یورینس پر ایک موسم 21 سال تک رہتا ہے۔',
     ],
     size: 2,
     diameterKm: 50724,
@@ -115,13 +171,20 @@ export const solarSystemData: CelestialBodyData[] = [
   },
   {
     name: 'Neptune',
-    description: 'Neptune is the eighth and farthest-known Solar planet from the Sun. In the Solar System, it is the fourth-largest planet by diameter, the third-most-massive planet, and the densest giant planet. It is 17 times the mass of Earth, slightly more massive than its near-twin Uranus.',
+    nameUrdu: 'نیپچون',
+    description: 'Neptune is the eighth and farthest-known Solar planet from the Sun.',
+    descriptionUrdu: 'نیپچون سورج سے آٹھواں اور سب سے دور کا سیارہ ہے۔',
     funFacts: [
         'Neptune is the windiest planet in the solar system.',
         'A year on Neptune lasts for 165 Earth years.',
         'Neptune is the smallest of the gas giants.',
     ],
-    size: 3.8, // Adjusted to be more proportionally accurate to Earth's size
+    funFactsUrdu: [
+        'نیپچون نظام شمسی کا سب سے زیادہ ہوادار سیارہ ہے۔',
+        'نیپچون کا ایک سال 165 زمینی سالوں کا ہوتا ہے۔',
+        'نیپچون گیسی دیو میں سب سے چھوٹا ہے۔',
+    ],
+    size: 3.8,
     diameterKm: 49244,
     color: '#4169E1',
     orbitalRadius: 65,
@@ -129,11 +192,18 @@ export const solarSystemData: CelestialBodyData[] = [
   },
         {
           name: 'Pluto',
-          description: 'Pluto is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. It was the first and the largest Kuiper belt object to be discovered. After Pluto was discovered in 1930, it was declared to be the ninth planet from the Sun.',
+          nameUrdu: 'پلوٹو',
+          description: 'Pluto is a dwarf planet in the Kuiper belt.',
+          descriptionUrdu: 'پلوٹو کائپر پٹی میں واقع ایک بونا سیارہ ہے۔',
           funFacts: [
-            'Pluto was reclassified from a planet to a dwarf planet in 2006.',
-            'Pluto has a heart-shaped glacier that’s the size of Texas and Oklahoma combined.',
+            'Pluto was reclassified as a dwarf planet in 2006.',
+            'Pluto has a heart-shaped glacier.',
             'It takes sunlight 5.5 hours to reach Pluto.',
+          ],
+          funFactsUrdu: [
+            '2006 میں پلوٹو کو بونے سیارے کے طور پر دوبارہ درجہ بند کیا گیا۔',
+            'پلوٹو پر دل کی شکل کا گلیشیر ہے۔',
+            'سورج کی روشنی کو پلوٹو تک پہنچنے میں 5.5 گھنٹے لگتے ہیں۔',
           ],
           size: 0.3,
           diameterKm: 2376,
@@ -145,52 +215,66 @@ export const solarSystemData: CelestialBodyData[] = [
 export const spacecraftData: SpacecraftData[] = [
   {
     name: 'Voyager 1',
-    description: 'Voyager 1 is a space probe launched by NASA on September 5, 1977, as part of the Voyager program to study the outer Solar System and interstellar space beyond the Sun\'s heliosphere.',
+    nameUrdu: 'وائجر 1',
+    description: 'Voyager 1 is a space probe launched by NASA in 1977.',
+    descriptionUrdu: 'وائجر 1 ناسا کا ایک خلائی جہاز ہے جو 1977 میں روانہ کیا گیا تھا۔',
     funFacts: [
-      'Voyager 1 is the most distant human-made object from Earth.',
-      'It carries a Golden Record containing sounds and images selected to portray the diversity of life and culture on Earth.',
+      'Voyager 1 is the most distant human-made object.',
+      'It carries a Golden Record.',
       'Voyager 1 is in interstellar space.',
     ],
+    funFactsUrdu: [
+        'وائجر 1 انسان کا بنایا ہوا سب سے دور کا جسم ہے۔',
+        'اس میں ایک سنہرا ریکارڈ موجود ہے۔',
+        'وائجر 1 ستاروں کے درمیانی خلا میں ہے۔',
+    ],
     size: 0.2,
-    diameterKm: 0.00000002, // Placeholder, actual size is very small
+    diameterKm: 0.00000002,
     color: 'gray',
-    // Position can be updated to be far out
     position: [80, 5, 0],
   },
   {
     name: 'New Horizons',
-    description: 'New Horizons is an interplanetary space probe that was launched as a part of NASA\'s New Frontiers program. Engineered by the Johns Hopkins University Applied Physics Laboratory (APL) and the Southwest Research Institute (SwRI), with a team led by S. Alan Stern, the spacecraft was launched in 2006 with the primary mission to perform a flyby study of the Pluto system in 2015.',
+    nameUrdu: 'نیو ہورائزنز',
+    description: 'New Horizons is a NASA probe that flew by Pluto in 2015.',
+    descriptionUrdu: 'نیو ہورائزنز ناسا کا ایک خلائی جہاز ہے جس نے 2015 میں پلوٹو کا دورہ کیا۔',
     funFacts: [
-      'New Horizons was the first spacecraft to explore Pluto up close.',
-      'It is about the size of a grand piano.',
-      'After its Pluto flyby, New Horizons went on to explore a Kuiper Belt object named Arrokoth.',
+      'It was the first to explore Pluto up close.',
+      'It is the size of a grand piano.',
+      'It explored Arrokoth.',
+    ],
+    funFactsUrdu: [
+        'اس نے پہلی بار پلوٹو کا قریب سے جائزہ لیا۔',
+        'اس کا سائز ایک پیانو کے برابر ہے۔',
+        'اس نے آروکوتھ نامی جسم کا بھی جائزہ لیا۔',
     ],
     size: 0.2,
-    diameterKm: 0.000000008, // Placeholder, actual size is very small
+    diameterKm: 0.000000008,
     color: 'gray',
-    // Position can be updated to be near Pluto
     position: [75, 2, 0],
   }
 ];
 
 export const asteroidBeltData = {
   name: 'Asteroid Belt',
+  nameUrdu: 'شہابی پٹی',
   innerRadius: 28,
   outerRadius: 32,
   height: 1,
   numberOfAsteroids: 100,
   minSize: 0.01,
   maxSize: 0.1,
-  color: '#8B4513', // SaddleBrown
+  color: '#8B4513',
 };
 
 export const kuiperBeltData = {
   name: 'Kuiper Belt',
+  nameUrdu: 'کائپر پٹی',
   innerRadius: 80,
   outerRadius: 150,
   height: 5,
   numberOfObjects: 200,
   minSize: 0.05,
   maxSize: 0.5,
-  color: '#A9A9A9', // DarkGray
+  color: '#A9A9A9',
 };

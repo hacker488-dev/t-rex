@@ -11,10 +11,11 @@ function isSpacecraftData(obj: SelectableObject): obj is SpacecraftData {
 
 interface ObjectCardProps {
   object: SelectableObject;
+  language: 'en' | 'ur';
   onSelect: (obj: SelectableObject) => void;
 }
 
-const ObjectCard: React.FC<ObjectCardProps> = ({ object, onSelect }) => {
+const ObjectCard: React.FC<ObjectCardProps> = ({ object, language, onSelect }) => {
   return (
     <div
       className="object-card"
@@ -65,7 +66,9 @@ const ObjectCard: React.FC<ObjectCardProps> = ({ object, onSelect }) => {
           <OrbitControls enableZoom={false} enablePan={false} />
         </Canvas>
       </div>
-      <p style={{ margin: 0, fontSize: '0.9em', color: 'white' }}>{object.name}</p>
+      <p style={{ margin: 0, fontSize: '0.9em', color: 'white' }}>
+        {language === 'ur' ? object.nameUrdu : object.name}
+      </p>
     </div>
   );
 };
