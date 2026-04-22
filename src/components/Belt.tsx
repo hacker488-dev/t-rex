@@ -1,6 +1,4 @@
-import { useRef, useMemo } from 'react';
-import { useFrame } from '@react-three/fiber';
-import { InstancedMesh, Object3D, Color } from 'three';
+// remove them completely if not used
 import type { AsteroidBeltData, KuiperBeltData } from '../types';
 
 interface BeltProps {
